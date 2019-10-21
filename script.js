@@ -4,9 +4,7 @@ const key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
 var cityName = '';
 var url = '';
 var curDate = new Date();
-//var nDate = curDate.toDateString();
-var nDate = moment().format("L").ToString();
-
+var nDate = curDate.toDateString();
 
 var xhr = new XMLHttpRequest();	// Create XMLHttpRequest object
 
