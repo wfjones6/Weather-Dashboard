@@ -1,6 +1,8 @@
-var cityID = 6167865;
-var key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
-var url = 'https://api.openweathermap.org/data/2.5/weather?id='+cityID+'&appid='+key;
+const searchBtn = document.getElementById("search");  
+const key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
+
+var cityName = '';
+var url = '';
 var curDate = new Date();
 var nDate = curDate.toDateString();
 
@@ -28,5 +30,14 @@ xhr.onload = function()			// When readystate changes
   }
 };
 
-xhr.open('GET', url, true);	// prepare the request
-xhr.send(null);
+searchBtn.addEventListener('click', function () 
+{
+  cityName = document.getElementById('inputText').value;
+  
+  // Current conditions URL
+  url = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&appid='+key;
+
+  xhr.open('GET', url, true);	// prepare the request
+  xhr.send(null);				// send the request
+				// send the request
+})
