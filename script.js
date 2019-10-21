@@ -11,12 +11,16 @@
     	responseObject = JSON.parse(xhr.responseText);
         
       // Build up string with new content (could also use DOM manipulation)
+      var curDate = new Date();
+      var nDate = curDate.toDateString();
       var fahrenheit = Math.round(((parseFloat(responseObject.main.temp)-273.15)*1.8)+32);
       var newContent = "";
 
       newContent += '<div >';
-      newContent += '<p>' + responseObject.weather[0].description + '</p>';
-      newContent += '<p>' + fahrenheit + '</p>';
+        newContent += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
+        newContent += '<p>Temperature: ' + fahrenheit + ' &degF</p>';
+        newContent += '<p>Humidity: ' + responseObject.main.humidity + '%</p>';
+        newContent += '<p>Wind Speed: ' + responseObject.wind.speed + ' MPH</p>';;
       newContent += '</div>';
 
       //update the page with the new content
