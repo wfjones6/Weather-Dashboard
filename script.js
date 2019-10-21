@@ -17,6 +17,7 @@ xhr.onload = function()			// When readystate changes
       // Build up string with new content (could also use DOM manipulation)
       var fahrenheit = Math.round(((parseFloat(responseObject.main.temp)-273.15)*1.8)+32);
       var curConditions = "";
+	  
       curConditions += '<div >';
       curConditions += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
       curConditions += '<p>Temperature: ' + fahrenheit + ' &degF</p>';
@@ -38,6 +39,5 @@ searchBtn.addEventListener('click', function ()
   url = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&appid='+key;
 
   xhr.open('GET', url, true);	// prepare the request
-  xhr.send(null);				// send the request
-				// send the request
+  xhr.send(null);		// send the request
 })
