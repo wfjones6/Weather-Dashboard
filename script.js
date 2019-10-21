@@ -6,7 +6,6 @@ var url = '';
 var curDate = new Date();
 var nDate = curDate.toDateString();
 
-
 var xhr = new XMLHttpRequest();	// Create XMLHttpRequest object
 
 xhr.onload = function()			// When readystate changes
