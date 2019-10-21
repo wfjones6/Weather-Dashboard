@@ -5,7 +5,7 @@ var cityName = '';
 var url = '';
 var curDate = new Date();
 //var nDate = curDate.toDateString();
-var nDate = moment().format("L");
+var nDate = moment().format("L").ToString();
 
 
 var xhr = new XMLHttpRequest();	// Create XMLHttpRequest object
