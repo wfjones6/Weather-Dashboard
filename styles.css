@@ -5,9 +5,9 @@
 
 .jumbotron 
 {
-    text-align: center;
-    background-color: black;
-    color: white;
-    border-radius: 0;
-    border-bottom: 5px solid black;
+	text-align: center;
+	font-family: Arial;
+	background-color: black;
+	color: white;
+	border-radius: 0;
 }
