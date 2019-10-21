@@ -1,0 +1,13 @@
+.container
+{
+	padding: 10px;
+}
+
+.jumbotron 
+{
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 0;
+    border-bottom: 10px solid black;
+}
