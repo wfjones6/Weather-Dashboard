@@ -31,6 +31,7 @@ xhr.onload = function()			// When readystate changes
   }
 };
 
+// Search
 searchBtn.addEventListener('click', function () 
 {
   cityName = document.getElementById('inputText').value;
