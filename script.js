@@ -17,10 +17,10 @@
       var newContent = "";
 
       newContent += '<div >';
-        newContent += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
-        newContent += '<p>Temperature: ' + fahrenheit + ' &degF</p>';
-        newContent += '<p>Humidity: ' + responseObject.main.humidity + '%</p>';
-        newContent += '<p>Wind Speed: ' + responseObject.wind.speed + ' MPH</p>';;
+      newContent += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
+      newContent += '<p>Temperature: ' + fahrenheit + ' &degF</p>';
+      newContent += '<p>Humidity: ' + responseObject.main.humidity + '%</p>';
+      newContent += '<p>Wind Speed: ' + responseObject.wind.speed + ' MPH</p>';;
       newContent += '</div>';
 
       //update the page with the new content
