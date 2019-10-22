@@ -18,7 +18,7 @@ xhr.onload = function()			// When readystate changes
       var fahrenheit = Math.round(((parseFloat(responseObject.main.temp)-273.15)*1.8)+32);
       var curConditions = "";
 	  
-      curConditions += '<div >';
+      curConditions += '<div>';
       curConditions += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
       curConditions += '<p>Temperature: ' + fahrenheit + ' &degF</p>';
       curConditions += '<p>Humidity: ' + responseObject.main.humidity + '%</p>';
