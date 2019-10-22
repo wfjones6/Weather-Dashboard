@@ -11,10 +11,9 @@ var lon;
 function getCurrent(curURL)
 {
   var xhr = new XMLHttpRequest();	// Create XMLHttpRequest object
-  xhr.open('GET', url, true);	// prepare the request
   xhr.onreadystatechange = function()
   {
-        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) 
+        if(this.readyState == 4 && this.status == 200) 
 	{
 	    responseObject = JSON.parse(xhr.responseText);
 
@@ -38,6 +37,7 @@ function getCurrent(curURL)
 	    document.getElementById('curConditions').innerHTML = curConditions;
 	}
   }
+  xhr.open('GET', url, true);	// prepare the request
   xhr.send(null);		// send the request
 }
 
