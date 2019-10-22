@@ -42,3 +42,4 @@ searchBtn.addEventListener('click', function ()
   xhr.open('GET', url, true);	// prepare the request
   xhr.send(null);		// send the request
 })
+
