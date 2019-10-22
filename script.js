@@ -76,6 +76,6 @@ searchBtn.addEventListener('click', function ()
   url = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&appid='+key;
   getCurrent(url);
 
-  url = 'http://api.openweathermap.org/data/2.5/uvi?appid='+key+'&lat='+lat+'&lon='+lon'
+  url = 'http://api.openweathermap.org/data/2.5/uvi?appid='+key+'&lat='+lat+'&lon='+lon';
   getUVIndex(url);
 })
