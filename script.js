@@ -20,7 +20,7 @@ xhr.onload = function()			// When readystate changes
 	  
       curConditions += '<div>';
       curConditions += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
-      curConditions += '<p>Temperature: ' + fahrenheit + ' &degF</p>';
+      curConditions += '<p>Temperature: ' + responseObject.main.temp + ' &degF</p>';
       curConditions += '<p>Humidity: ' + responseObject.main.humidity + '%</p>';
       curConditions += '<p>Wind Speed: ' + responseObject.wind.speed + ' MPH</p>';
       curConditions += '<p>UV Index: '+ 10.4 + '</p>';
@@ -37,7 +37,7 @@ searchBtn.addEventListener('click', function ()
   cityName = document.getElementById('inputText').value;
   
   // Current conditions URL
-  url = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&appid='+key;
+  url = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&units=imperial&appid='+key;
 
   xhr.open('GET', url, true);	// prepare the request
   xhr.send(null);		// send the request
