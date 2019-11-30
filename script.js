@@ -13,8 +13,7 @@ xhr.onload = function()			// When readystate changes
   if(xhr.status === 200)			//If server status was ok
   {
     responseObject = JSON.parse(xhr.responseText);
-    var url2 = 'http://api.openweathermap.org/data/2.5/uvi?appid='+key+'&lat='+responseObject.coord.lat+'&lon='+responseObject.coord.lon;
-	  
+  
 
       // Build up string with new content (could also use DOM manipulation)
       var curConditions = "";
