@@ -2,7 +2,6 @@ const searchBtn = document.getElementById("search");
 const key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
 
 var cityName = '';
-var url = '';
 var curDate = new Date();
 var nDate = curDate.toDateString();
 
