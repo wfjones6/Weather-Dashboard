@@ -6,41 +6,106 @@ var url = '';
 var curDate = new Date();
 var nDate = curDate.toDateString();
 
-var xhr = new XMLHttpRequest();	// Create XMLHttpRequest object
+var mLat = '';
+var mLon = '';
+var mName = '';
+var mTemp = '';
+var mHumidity = '';
+var mWindSp = '';
+var mUV = '';
 
-xhr.onload = function()			// When readystate changes
+// Create event listener
+searchBtn.addEventListener('click', submitSearch);
+
+function submitSearch()
 {
-  if(xhr.status === 200)			//If server status was ok
-  {
-    responseObject = JSON.parse(xhr.responseText);
-  
+	var xhr = new XMLHttpRequest();	// Create XMLHttpRequest object
+	cityName = document.getElementById('inputText').value;
 
-      // Build up string with new content (could also use DOM manipulation)
-      var curConditions = "";
-	  
-      curConditions += '<div>';
-      curConditions += '<h3>' + responseObject.name + ' (' + nDate + ')</h3>';
-      curConditions += '<p>Temperature: ' + responseObject.main.temp + ' &degF</p>';
-      curConditions += '<p>Humidity: ' + responseObject.main.humidity + '%</p>';
-      curConditions += '<p>Wind Speed: ' + responseObject.wind.speed + ' MPH</p>';
-      curConditions += '<p>UV Index: '+ 10.4 + '</p>';
-      curConditions += '</div>';
+	// Current conditions URL
+	// Use '&units=imperial' to get temperature returned in fahrenheit
+	urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&units=imperial&appid='+key;
 
-      //update the page with the new content
-      document.getElementById('curConditions').innerHTML = curConditions;
-  }
-};
+	xhr.open('GET', urlWeather, true);	// prepare the request
+	xhr.onload = function()			// When readystate changes
+	{
+ 	    if(xhr.readyState === 4)  // Finished
+	    {
+		if (xhr.status === 200) // If server status was ok
+		{
+		    responseObject = JSON.parse(xhr.responseText);
 
-// Search
-searchBtn.addEventListener('click', function () 
+		    mLat = responseObject.coord.lat;
+		    mLon = responseObject.coord.lon;
+		    mName = responseObject.name;
+		    mTemp = responseObject.main.temp;
+		    mHumidity = responseObject.main.humidity;
+		    mWindSp = responseObject.wind.speed;
+
+		    // Get the UV value
+		    getUV();
+		}
+	    }
+	};
+
+	xhr.send(null);
+}
+
+
+function getUV()
 {
-  cityName = document.getElementById('inputText').value;
-  
-  // Current conditions URL
-  // Use '&units=imperial' to get temperature returned in fahrenheit
-  url = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&units=imperial&appid='+key;
+	var xhr2 = new XMLHttpRequest();
+	urlUV = 'https://api.openweathermap.org/data/2.5/uvi?lat='+mLat+'&lon='+mLon+'&appid='+key;
 
-  xhr.open('GET', url, true);	// prepare the request
-  xhr.send(null);		// send the request
-})
+	xhr2.open('GET', urlUV, true);
+	xhr2.onload = function()
+	{
+	    if(xhr2.readyState === 4) // Finished
+	    {
+		if (xhr2.status === 200) // If server status was ok
+		{
+		    responseObject2 = JSON.parse(xhr2.responseText);
+		    mUV = responseObject2.value;
 
+		    // Get the 5 day forecast then display the data
+		    get5Day();
+		}
+	    }
+	};
+	
+	xhr2.send(null);
+}
+
+
+function get5Day()
+{
+	var xhr3 = new XMLHttpRequest();
+	urlForecast = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityName+'&appid='+key;
+
+	xhr3.open('GET', urlForecast, true);
+	xhr3.onload = function()
+	{
+	    if(xhr3.readyState === 4) 
+	    {
+		if (xhr3.status === 200 || xhr3.status === 0)//If server status was ok
+		{
+		    responseObject3 = JSON.parse(xhr3.responseText);
+		    // Build up string with new content (could also use DOM manipulation)
+		    var curConditions = "";
+
+		    curConditions += '<div>';
+		    curConditions += '<h3>' + mName + ' (' + nDate + ')</h3>';
+		    curConditions += '<p>Temperature: ' + mTemp + ' &degF</p>';
+		    curConditions += '<p>Humidity: ' + mHumidity + '%</p>';
+		    curConditions += '<p>Wind Speed: ' + mWindSp + ' MPH</p>';
+		    curConditions += '<p>UV Index: '+ mUV + '</p>';
+		    curConditions += '</div>';
+
+		    //update the page with the new content
+		    document.getElementById('curConditions').innerHTML = curConditions;
+		}
+	    }
+	};
+	
+	xhr3.send(null);
+}
