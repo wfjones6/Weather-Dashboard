@@ -22,7 +22,7 @@ function submitSearch()
 	cityName = document.getElementById('inputText').value;
 
 	// Current conditions URL
-	// Use '&units=imperial' to get temperature returned in fahrenheit
+	// Include '&units=imperial' to get temperature returned in fahrenheit
 	urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&units=imperial&appid='+key;
 
 	xhr.open('GET', urlWeather, true);	// prepare the request
@@ -54,6 +54,7 @@ function submitSearch()
 function getUV()
 {
 	var xhr2 = new XMLHttpRequest();
+	// UV URL
 	urlUV = 'https://api.openweathermap.org/data/2.5/uvi?lat='+mLat+'&lon='+mLon+'&appid='+key;
 
 	xhr2.open('GET', urlUV, true);
@@ -61,14 +62,11 @@ function getUV()
 	{
 	    if(xhr2.readyState === 4) // Finished
 	    {
-		if (xhr2.status === 200) // If server status was ok
-		{
-		    responseObject2 = JSON.parse(xhr2.responseText);
-		    mUV = responseObject2.value;
+		responseObject2 = JSON.parse(xhr2.responseText);
+		mUV = responseObject2.value;
 
-		    // Get the 5 day forecast then display the data
-		    get5Day();
-		}
+		// Get the 5 day forecast then display the data
+		get5Day();
 	    }
 	};
 	
@@ -79,6 +77,8 @@ function getUV()
 function get5Day()
 {
 	var xhr3 = new XMLHttpRequest();
+	// 5-Day Forecast URL
+	// Include '&units=imperial' to get temperature returned in fahrenheit
 	urlForecast = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityName+'&units=imperial&appid='+key;
 
 	xhr3.open('GET', urlForecast, true);
