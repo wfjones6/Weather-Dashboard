@@ -79,7 +79,7 @@ function getUV()
 function get5Day()
 {
 	var xhr3 = new XMLHttpRequest();
-	urlForecast = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityName+'&appid='+key;
+	urlForecast = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityName+'&units=imperial&appid='+key;
 
 	xhr3.open('GET', urlForecast, true);
 	xhr3.onload = function()
