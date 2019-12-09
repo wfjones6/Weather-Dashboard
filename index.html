@@ -14,25 +14,41 @@
 </head>
 	
 <body>
-	<header class="jumbotron">
-		<h2>Weather Dashboard</h2>
-	</header>
-  
-	<div class="container">
-		<div id="searchDiv">
-			<h4>Search for a City:</h4>
-			<div id="searchBox">
-				<input type="text" onfocus="this.value=''" id="inputText" value="">
-				<button type="button" class="btnColor btn btn-secondary" id="search">Submit</button>
-			</div>
-		</div>
+<div class="container-fluid">
+   <div class="row">
+    
+      <div class="container-fluid bg-dark text-white text-center">
+        <h1>Weather Dashboard</h1>
+      </div>
 
-		<div id="currentConditions">
-			<div id="curConditions"></div>
-			<div id="uvIndex"></div>
-		</div>
-	</div>
-	
+      <div class="col-md-4">
+         <div class="container p-3 my-3 border bg-light">       
+
+            <div>
+              <h5>Search for a City:</h5>
+            </div> 
+            
+            <div class="input-group mb-3" id="searchBox">
+              <input type="text" class="form-control" onfocus="this.value=''" id="inputText" value="" placeholder="Search">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="search">Go</button> 
+              </div>
+            </div> 
+
+
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">First item</a>
+                <a href="#" class="list-group-item list-group-item-action">Second item</a>
+                <a href="#" class="list-group-item list-group-item-action">Third item</a>
+            </div>
+         </div>
+      </div>
+        
+      <div class="col-md-8" id="curConditions">
+      </div>
+      
+   </div>
+</div>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
