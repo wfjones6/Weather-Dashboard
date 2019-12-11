@@ -1,3 +1,4 @@
+const inputTxt = document.getElementById("inputText");
 const searchBtn = document.getElementById("search");  
 const key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
 
@@ -14,7 +15,14 @@ var mHumidity = '';
 var mWindSp = '';
 var mUV = '';
 
-// Create event listener
+// Create event listeners
+
+inputTxt.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("search").click();
+  }
+});
 
 searchBtn.addEventListener('click', submitSearch);
 
