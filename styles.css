@@ -1,13 +1,7 @@
-.container
-{
-	padding: 10px;
-}
-
-.jumbotron 
-{
-	text-align: center;
-	font-family: Arial;
-	background-color: black;
-	color: white;
-	border-radius: 0;
-}
+.span {
+        border-radius: 3px;
+        padding: 5px;
+        display: inline;
+        color: white;
+        background-color: red;
+      }
