@@ -144,7 +144,6 @@ function get5Day()
 	    curConditions += '<li class="list-item pt-3">UV Index: ' + '<span>' + mUV + '</span></li>';
 	    curConditions += '</ul>';
 	    curConditions += '</div>';
-	    curConditions += '</br>';
             
 	    curConditions += '<div class="card">';
 	    curConditions += '<h5 class="card-header">5-Day Forecast:</h5>';
