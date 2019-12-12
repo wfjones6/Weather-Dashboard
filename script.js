@@ -3,12 +3,11 @@ const searchBtn = document.getElementById("search");
 const key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
 
 var cityName = '';
-var curDate = new Date();
-var nDate = curDate.toDateString();
 
 var mLat = '';
 var mLon = '';
 var mName = '';
+var mDate = '';
 var mCurIcon='';
 var mTemp = '';
 var mHumidity = '';
@@ -47,6 +46,11 @@ function submitSearch()
  	    mLat = responseObject.coord.lat;
  	    mLon = responseObject.coord.lon;
 	    mName = responseObject.name;
+            
+            var dateObj = new Date();
+	    var momentObj = moment(dateObj);
+	    mDate = momentObj.format('MM/DD/YYYY');
+
             mCurIcon = 'http://openweathermap.org/img/wn/'+ responseObject.weather[0].icon +'.png';
 	    mTemp = responseObject.main.temp;
 	    mHumidity = responseObject.main.humidity;
@@ -131,7 +135,7 @@ function get5Day()
 	    var curConditions = "";
             
             curConditions += '<div class="container p-3 my-3 border">'    
-            curConditions += '<h3>' + mName + ' (' + nDate + ')  ' + '<Img src=' + mCurIcon + '></h3>';
+            curConditions += '<h3>' + mName + ' (' + mDate + ')  ' + '<Img src=' + mCurIcon + '></h3>';
 
 	    curConditions += '<ul class="list-unstyled">';
 	    curConditions += '<li class="list-item pt-3">Temperature: '+ mTemp + '&degF</li>';
