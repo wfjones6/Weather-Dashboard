@@ -137,7 +137,7 @@ function get5Day()
 	    curConditions += '<li class="list-item pt-3">Temperature: '+ mTemp + '&degF</li>';
 	    curConditions += '<li class="list-item pt-3">Humidity: ' + mHumidity + '%</li>';
 	    curConditions += '<li class="list-item pt-3">Wind Speed: ' + mWindSp + ' MPH</li>';
-	    curConditions += '<li class="list-item pt-3">UV Index: ' + mUV + '</li>';
+	    curConditions += '<li class="list-item pt-3">UV Index: ' + '<span>' + mUV + '</span></li>';
 	    curConditions += '</ul>';
 	    curConditions += '</div>';
 	    curConditions += '</br>';
