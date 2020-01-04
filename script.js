@@ -77,11 +77,8 @@ function updateList()
   // If application startup
   if(mFirst === true)
   {
-     if(cityArray[i].length > 0)
-     {
-        cityName = cityArray[0];
-        getCurConditions();
-     }
+     cityName = cityArray[0];
+     getCurConditions();
      mFirst = false;
   }
   
