@@ -73,18 +73,22 @@ function updateList()
   
   searchedList.innerHTML = curList;
   localStorage.setItem("cityArray", JSON.stringify(cityArray));
-  
+
+  // If application startup
   if(mFirst === true)
   {
-     cityName = cityArray[0];
-     getCurConditions();
+     if(cityArray[i].length > 0)
+     {
+        cityName = cityArray[0];
+        getCurConditions();
+     }
      mFirst = false;
   }
   
   // Get the parent DIV, add click listener...
   document.getElementById("searchedGroup").addEventListener("click",function(e) 
   {
-      // e.target was the clicked element
+      // e.target was the clicked element. Make sure the element tag = <a>
       if (e.target && e.target.tagName === 'A') 
       {
           document.getElementById('inputText').value = e.target.text;
@@ -95,8 +99,7 @@ function updateList()
 
 function getCurConditions()
 {
-    // Create XMLHttpRequest object
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();  // Create XMLHttpRequest object
 
     // Current conditions URL
     // Include '&units=imperial' to get temperature returned in fahrenheit
@@ -111,7 +114,6 @@ function getCurConditions()
 	     if (xhr.status === 200) // If server status was ok
              {
 	         responseObject = JSON.parse(xhr.responseText);
-
 		 mLat = responseObject.coord.lat;
 		 mLon = responseObject.coord.lon;
 		 mName = responseObject.name;
@@ -134,14 +136,12 @@ function getCurConditions()
              }
          }
     };
-
     xhr.send(null);
 }
 
 function getUV()
 {
     var xhr2 = new XMLHttpRequest();
-
     // UV URL
     urlUV = 'https://api.openweathermap.org/data/2.5/uvi?lat='+mLat+'&lon='+mLon+'&appid='+key;
 
@@ -152,9 +152,8 @@ function getUV()
 	{
 	    responseObject2 = JSON.parse(xhr2.responseText);
 	    mUV = responseObject2.value;
-
 	    // Get the 5 day forecast then display the data
-	    get5Day()
+	    get5Day();
         }
     };
     xhr2.send(null);
@@ -206,39 +205,39 @@ function get5Day()
                 curConditions += '<div class="container p-3 my-3 border">'    
  	        curConditions += '<h3>' + mName + ' (' + mDate + ')  ' + '<Img src=' + mCurIcon + '></h3>';
 
-	         curConditions += '<ul class="list-unstyled">';
-	         curConditions += '<li class="list-item pt-3">Temperature: '+ mTemp + '&degF</li>';
-	         curConditions += '<li class="list-item pt-3">Humidity: ' + mHumidity + '%</li>';
-	         curConditions += '<li class="list-item pt-3">Wind Speed: ' + mWindSp + ' MPH</li>';
-	         curConditions += '<li class="list-item pt-3">UV Index: ' + '<span>' + mUV + '</span></li>';
-	         curConditions += '</ul>';
-	         curConditions += '</div>';
+	        curConditions += '<ul class="list-unstyled">';
+	        curConditions += '<li class="list-item pt-3">Temperature: '+ mTemp + '&degF</li>';
+	        curConditions += '<li class="list-item pt-3">Humidity: ' + mHumidity + '%</li>';
+	        curConditions += '<li class="list-item pt-3">Wind Speed: ' + mWindSp + ' MPH</li>';
+	        curConditions += '<li class="list-item pt-3">UV Index: ' + '<span>' + mUV + '</span></li>';
+	        curConditions += '</ul>';
+	        curConditions += '</div>';
             
-	         curConditions += '<div class="card">';
-	         curConditions += '<h5 class="card-header">5-Day Forecast:</h5>';
-	         curConditions += '<div class="card-body">';
-	         curConditions += '<div class="card-deck">';
+	        curConditions += '<div class="card">';
+	        curConditions += '<h5 class="card-header">5-Day Forecast:</h5>';
+	        curConditions += '<div class="card-body">';
+	        curConditions += '<div class="card-deck">';
 
-		 for (i = 0; i < forecastArray.length; i++)
-	         {
-		     curConditions += '<div class="card bg-primary">';
-      		     curConditions += '<div class="card-body text-left" style="color:white;">';
-		     curConditions += '<h5 class="card-text">' + forecastArray[i][0] + '</h5>';
-		     curConditions += '<img src=' + forecastArray[i][1] + '>';
-		     curConditions += '<p class="card-text">Temp: ' + forecastArray[i][2] + ' &degF</p>';
-		     curConditions += '<p class="card-text">Humidity: ' + forecastArray[i][3] + '%</p>';
-		     curConditions += '</div>';
-		     curConditions += '</div>';
-		 }
+		for (i = 0; i < forecastArray.length; i++)
+	        {
+		    curConditions += '<div class="card bg-primary">';
+      		    curConditions += '<div class="card-body text-left" style="color:white;">';
+		    curConditions += '<h5 class="card-text">' + forecastArray[i][0] + '</h5>';
+		    curConditions += '<img src=' + forecastArray[i][1] + '>';
+		    curConditions += '<p class="card-text">Temp: ' + forecastArray[i][2] + ' &degF</p>';
+		    curConditions += '<p class="card-text">Humidity: ' + forecastArray[i][3] + '%</p>';
+		    curConditions += '</div>';
+		    curConditions += '</div>';
+		}
 
-                 curConditions += '</div>';
-                 curConditions += '</div>';
-                 curConditions += '</div>';
+                curConditions += '</div>';
+                curConditions += '</div>';
+                curConditions += '</div>';
       
-		 //update the page with the new content
-	         document.getElementById('curConditions').innerHTML = curConditions;
+		//update the page with the new content
+	        document.getElementById('curConditions').innerHTML = curConditions;
             
-                 // Clear the search box and give it focus
+                // Clear the search box and give it focus
 		document.getElementById('inputText').value = "";
    		document.getElementById('inputText').focus();
 	    }
