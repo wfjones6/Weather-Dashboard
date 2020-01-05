@@ -19,7 +19,7 @@ var curConditions = "";
 var curList = "";
 var cityArray = JSON.parse(localStorage.getItem("cityArray") || "[]");
 
-if (cityArray.length > 0)
+if (typeof cityArray != 'undefined' && cityArray.length > 0)
 {
    mFirst = true;
    updateList();
