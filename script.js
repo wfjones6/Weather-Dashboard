@@ -19,7 +19,7 @@ var curConditions = "";
 var curList = "";
 var cityArray = JSON.parse(localStorage.getItem("cityArray") || "[]");
 
-updateList();
+//updateList();
 
 // Create event listeners
 
