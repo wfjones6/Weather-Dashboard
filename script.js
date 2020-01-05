@@ -4,7 +4,7 @@ const searchedList = document.getElementById("searchedGroup");
 const key = 'fe692e6f7fc6afc8b2dde67841dbabe0';
 
 var cityName = '';
-var mFirst = true;
+var mFirst = false;
 
 var mLat = '';
 var mLon = '';
@@ -19,7 +19,11 @@ var curConditions = "";
 var curList = "";
 var cityArray = JSON.parse(localStorage.getItem("cityArray") || "[]");
 
-//updateList();
+if (typeof cityArray !== 'undefined' && cityArray.length > 0)
+{
+   mFirst = true;
+   updateList();
+}
 
 // Create event listeners
 
@@ -79,11 +83,8 @@ function updateList()
   
    if(mFirst === true)
    {
-      if(cityArray[0].length > 0)
-      {
-         cityName = cityArray[0];
-         getCurConditions();
-      }
+      cityName = cityArray[0];
+      getCurConditions();
       mFirst = false;
    }
   
